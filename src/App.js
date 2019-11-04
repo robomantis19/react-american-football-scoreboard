@@ -10,13 +10,10 @@ function App() {
   const [away, setAway] = useState(0); 
   const [time, setTime] = useState(0); 
   const [minute, setMinute] = useState(0);
-  // const gameTime = e =>  { 
-  //   setTime(time => time + 1)
-  // }
+  const [quarter, setQuarter] = useState(0); 
   
-
-    
-    //var minute = 0 ; 
+  //set game to be 1 minute quarters
+  // after 4 quarters winner is declared but for our purposes we run the whole game in one quarter.
     
     useEffect(()=> { 
       setTimeout(() => {
@@ -29,10 +26,20 @@ function App() {
         setMinute(minute => minute + 1)
          
       }
+      if(minute != 0 && minute % 1 == 0 ){
+        setQuarter(quarter => quarter + 1) 
+        setMinute(minute => minute * 0) 
+      }
 
     },[time])
     if(time != 0 && time % 60 == 0 ){
       setTime(time => time * 0 )
+    }
+    // if(minute != 0 && minute == 1  ){
+    //   setMinute(minute => minute * 0) 
+    // }
+    if(quarter != 0 && quarter % 4 == 0 ){
+      setQuarter(quarter => quarter * 0) 
     }
 
     
@@ -60,7 +67,7 @@ function App() {
             <div className="away__score">{away}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow key="minute" quarters = {quarter} score = {[home, away]} />
       </section>
       <section className="buttons">
         <div className="homeButtons">
