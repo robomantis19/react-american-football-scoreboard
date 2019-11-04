@@ -1,5 +1,5 @@
 //TODO: STEP 1 - Import the useState hook.
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
 
@@ -14,12 +14,21 @@ function App() {
   // }
   
 
-    setTimeout(() => {
+    
+    //var minute = 0 ; 
+    useEffect(()=> { 
+      setTimeout(() => {
       
-      setTime(time => time + 1)
-      // Minute(time)
-      
-    }, 1000)
+        setTime(time => time + 1)
+        // Minute(time)
+        
+      }, 1000)
+      if(time % 10 == 0 ){ 
+        setMinute(minute => minute + 1) 
+      }
+
+    },[time])
+    
 
     
     // function Minute(time) {
