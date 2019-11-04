@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
+import { tsPropertySignature } from "@babel/types";
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
@@ -16,6 +17,7 @@ function App() {
 
     
     //var minute = 0 ; 
+    
     useEffect(()=> { 
       setTimeout(() => {
       
@@ -23,12 +25,15 @@ function App() {
         // Minute(time)
         
       }, 1000)
-      if(time % 10 == 0 ){ 
-        setMinute(minute => minute + 1) 
+      if(time != 0 && time % 59 == 0 ){ 
+        setMinute(minute => minute + 1)
+         
       }
 
     },[time])
-    
+    if(time != 0 && time % 60 == 0 ){
+      setTime(time => time * 0 )
+    }
 
     
     // function Minute(time) {
